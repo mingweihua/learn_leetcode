@@ -81,4 +81,45 @@ public class Ques621 {
 		}
 		return newQueue;
 	}
+
+	//方法2：构造，查看leetcode答案
+	public int leastInterval2(char[] tasks, int n) {
+		HashMap<Character,Integer> map = new HashMap<>();
+		for (int i = 0; i < tasks.length; i++) {
+			map.put(tasks[i],map.getOrDefault(tasks[i],0)+1);
+		}
+		int maxCount = 0;
+		int maxLength = 0;
+		int temp= 0;
+		for (Character key : map.keySet()){
+			temp = map.get(key);
+			if(temp > maxLength){
+				maxLength = temp;
+				maxCount = 1;
+			} else if(temp ==  maxLength){
+				maxCount++;
+			}
+		}
+		return Math.max((maxLength-1) * (n+1)+maxCount,tasks.length);
+	}
+
+	//优化一下时间
+	public int leastInterval3(char[] tasks, int n) {
+		HashMap<Character,Integer> map = new HashMap<>();
+		int temp= 0;
+		int maxCount = 0;
+		int maxLength = 0;
+		for (int i = 0; i < tasks.length; i++) {
+			temp = map.getOrDefault(tasks[i],0)+1;
+			if(temp > maxLength){
+				maxLength = temp;
+				maxCount = 1;
+			} else if(temp ==  maxLength){
+				maxCount++;
+			}
+			map.put(tasks[i],temp);
+		}
+
+		return Math.max((maxLength-1) * (n+1)+maxCount,tasks.length);
+	}
 }
