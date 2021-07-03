@@ -43,5 +43,6 @@ public class Ques678 {
         return lo<=0;
     }
 
+
 	
 }

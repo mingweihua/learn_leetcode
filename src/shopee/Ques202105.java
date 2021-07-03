@@ -18,6 +18,7 @@ public class Ques202105 {
                 } else {
                     lo--;
                     hi--;
+
                 }
             } else {
                 hi++;
