@@ -1,10 +1,10 @@
 package baodian;
 
-public class Ques17124 {
+public class Ques1724 {
 
     public static void main(String[] args) {
         int[][]  matrix = {{9,-8,1,3,-2},{-3,-50,6,-2,4},{6,-4,-4,-5,-7},{5,4,-4,8,-7}};
-        System.out.println(new Ques17124().getMaxMatrix(matrix));
+        System.out.println(new Ques1724().getMaxMatrix(matrix));
     }
 
     public int[] getMaxMatrix(int[][] matrix) {
