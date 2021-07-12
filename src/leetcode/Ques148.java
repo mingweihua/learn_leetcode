@@ -91,5 +91,83 @@ public class Ques148 {
         }
         return slow;
     }
-    
+
+
+    //时间复杂度为O(nlogn),空间为常熟，就是归并排序，但是必须是自底而上的，否则是O(logn)空间复杂度
+    public ListNode sortList2(ListNode head) {
+	    ListNode newHead = new ListNode(-1);
+	    newHead.next = head;
+	    int length = 0;
+        ListNode cur = head;
+	    while (cur!=null){
+            length++;
+            cur = cur.next;
+        }
+        for (int i = 1; i <= length; i<<=1) {
+            ListNode pre = newHead;
+            while (pre.next != null){
+                ListNode head1 = pre.next;
+                ListNode head1End = head1;
+                int n = i;
+                while (n>1 && head1End != null){
+                    head1End = head1End.next;
+                    n--;
+                }
+                //head1End为空，即只有一条链，不需要合并
+                if(head1End == null || head1End.next == null) {
+                    break;
+                }
+                //断开3个子链
+                pre.next = null;
+                ListNode head2 = head1End.next;
+                head1End.next = null;
+                ListNode head2End = head2;
+                n = i;
+                while (n>1 && head2End != null){
+                    head2End = head2End.next;
+                    n--;
+                }
+                //head2End不为空，即后面还有元素了，为下一次的合并操作的head1
+                ListNode next = null;
+                if(head2End != null){
+                    next = head2End.next;
+                    head2End.next = null;
+                }
+                ListNode newEnd = merge(pre,head1,head2);
+                newEnd.next = next;
+                pre = newEnd;
+            }
+        }
+
+
+        return newHead.next;
+    }
+
+    public ListNode merge(ListNode pre, ListNode head1, ListNode head2) {
+	    while(head1 != null && head2 != null){
+	        if(head1.val <= head2.val){
+	            pre.next = head1;
+	            head1 = head1.next;
+	            pre = pre.next;
+            } else {
+                pre.next = head2;
+                head2 = head2.next;
+                pre = pre.next;
+            }
+        }
+
+        while(head1 != null){
+            pre.next = head1;
+            head1 = head1.next;
+            pre = pre.next;
+        }
+
+        while(head2 != null){
+            pre.next = head2;
+            head2 = head2.next;
+            pre = pre.next;
+        }
+        pre.next = null;
+        return pre;
+    }
 }
