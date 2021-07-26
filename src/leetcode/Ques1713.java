@@ -6,7 +6,9 @@ import java.util.*;
 public class Ques1713 {
 
     public static void main(String[] args) {
-
+        int[] target = {147006006,414087855,781906580,213872647,341866400,674590438,530308968,178008557,87329397,886710682};
+        int[] arr = {530308968,147006006,672718815,341866400,886710682,341866400,530308968,178008557,6513508,6513508};
+        System.out.println(new Ques1713().minOperations3(target,arr));
     }
 
 
@@ -82,32 +84,43 @@ public class Ques1713 {
      */
     public int minOperations3(int[] target, int[] arr) {
         int n = target.length;
-        HashSet<Integer> set = new HashSet<>();
-        for (int i = 0; i < target.length; i++) {
-            set.add(target[i]);
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(target[i],i+1);
         }
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
-            if(set.contains(arr[i])){
-                list.add(arr[i]);
+            if (map.containsKey(arr[i])){
+                list.add(map.get(arr[i]));
             }
         }
-        set = null;
         int m = list.size();
-        int[] dp = new int[m+1];
-        int[] dp2;
-        for (int i = 1; i <= n ; i++) {
-            dp2 = new int[m+1];
-            for (int j = 1; j <= m; j++) {
-                if(target[i-1] == list.get(j-1)){
-                    dp2[j] = dp[j-1] + 1;
-                } else {
-                    dp2[j] = dp[j-1];
-                }
-                dp2[j] = Math.max(dp2[j],Math.max(dp[j],dp2[j-1]));
-            }
-            dp = dp2;
+        if( m == 0 || m == 1){
+            return n-m;
         }
-        return n - dp[m];
+        int[] dp = new int[m+1];
+        dp[1] = list.get(0);
+        int len = 1;
+        for (int i = 1; i < m; i++) {
+            int temp = list.get(i);
+            if(temp>dp[len]){
+                dp[++len] = temp;
+            } else {
+                int left = 0;
+                int right = len;
+                int mid = 0;
+                while (left<right){
+                    mid = left + ((right-left)>>1);
+                    if(dp[mid]>= temp){
+                        right = mid;
+                    } else {
+                        left = mid + 1;
+                    }
+                }
+                dp[left] = temp;
+            }
+        }
+
+        return n - len;
     }
 }
