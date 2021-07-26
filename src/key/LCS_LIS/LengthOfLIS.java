@@ -1,4 +1,4 @@
-package key;
+package key.LCS_LIS;
 
 public class LengthOfLIS {
 
