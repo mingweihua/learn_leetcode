@@ -1,4 +1,4 @@
-package key;
+package key.LRU_LFU;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
