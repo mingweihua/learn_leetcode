@@ -13,6 +13,8 @@ public class Dijkstra {
 	//自己想的BFS求解最短路径难点在于如何解决有环问题，因为最短路径中，节点以及同一条边是有可能重复走的
 	//解决方法：当【重复】走到某一个节点，发现其路径并没有比原来少，那么这个节点邻接点就可以不加入到队列中
 	//实际运行时间是比Dijkstra 算法（迪杰斯特拉算法）要久一点
+
+	//感觉有点像Ford算法
 	public int networkDelayTime(int[][] times, int n, int k) {
 		int[] score = new int[n+1];
 		Arrays.fill(score,Integer.MAX_VALUE);
@@ -32,7 +34,7 @@ public class Dijkstra {
 			cur = queue.remove();
 			int index = cur[0];
 			if(score[index] > cur[1]){
-				score[index] = Math.min(score[index],cur[1]);
+				score[index] = cur[1];
 				for (int j = 1; j < edges[index].length; j++) {
 
 					if(edges[index][j] != -1){
@@ -73,7 +75,7 @@ public class Dijkstra {
 
 			1.首先，Dijkstra 算法需要存储各个边权，由于本题节点数量不超过 100，所以代码中使用了邻接矩阵 g[i][j] 存储从点 i 到点 j 的距离。
 			若两点之间没有给出有向边，则初始化为 inf。算法还需要记录所有点到源点的最短距离，代码中使用了 dist[i] 数组存储源点到点 i 的最短距离，
-			初始值也全部设为 inf。由于本题源点为 KK，所以该点距离设为 0。
+			初始值也全部设为 inf。由于本题源点为 K，所以该点距离设为 0。
 			2.其次，Dijkstra 算法需要标记某一节点是否已确定了最短路，在代码中使用了 used[i] 数组存储，
 			若已确定最短距离，则值为 true，否则值为 false。
 
