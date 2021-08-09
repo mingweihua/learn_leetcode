@@ -1,16 +1,18 @@
-package leetcode;
+package key.uglyNumber;
 
 
-public class Ques313 {
+public class NthSuperUglyNumber {
 
 	public static void main(String[] args) {
 
 		int n = 12;
 		int[] primes = {2,7,13,19};
-		System.out.println(new Ques313().nthSuperUglyNumber(n,primes));
+		System.out.println(new NthSuperUglyNumber().nthSuperUglyNumber(n,primes));
 	}
 
-
+	/*
+		对应leetcode的313题目
+	 */
 	public int nthSuperUglyNumber(int n, int[] primes) {
 		if(n == 1){
 			return 1;
