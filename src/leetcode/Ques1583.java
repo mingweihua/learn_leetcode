@@ -44,16 +44,34 @@ public class Ques1583 {
 		return set.size();
 	}
 
-	public boolean unhappyFriends(int n, int[][] preferences, int x, int y) {
-
-		for (int i = 0; i < preferences[x].length; i++) {
-			if(preferences[x][i] == y){
-				break;
-			}
-			int temp = preferences[x][i];
-
+	public int unhappyFriends2(int n, int[][] preferences, int[][] pairs) {
+		int[] cp = new int[n];
+		for (int[] pair: pairs) {
+			int x = pair[0];
+			int y = pair[1];
+			cp[x] = y;
+			cp[y] = x;
 		}
-		return false;
+		int[][] preferences_handle = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < preferences[i].length; j++) {
+				preferences_handle[i][preferences[i][j]] = j;
+			}
+		}
+		int res = 0;
+		for (int x = 0; x < n; x++) {
+			int y = cp[x];
+			int length = preferences_handle[x][y];
+			for (int j = 0; j < length; j++) {
+				int u = preferences[x][j];
+				int v = cp[u];
+				if(preferences_handle[u][x] < preferences_handle[u][v]){
+					res++;
+					break;
+				}
+			}
+		}
+		return res;
 	}
 
 
