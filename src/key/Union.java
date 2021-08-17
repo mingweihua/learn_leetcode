@@ -9,7 +9,7 @@ public class Union {
     //并查集的思想
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         int size = equations.size();
-      UnionFind unionFind = new UnionFind(2*size);
+        UnionFind unionFind = new UnionFind(2*size);
         HashMap<String,Integer> map = new HashMap<>(2*size);
         int id = 0;
         for (int i = 0; i < equations.size(); i++) {
