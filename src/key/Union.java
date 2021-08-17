@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Union {
 
-    //对应Leetcode题目是339
+    //对应Leetcode题目是399
     //并查集的思想
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         int size = equations.size();
