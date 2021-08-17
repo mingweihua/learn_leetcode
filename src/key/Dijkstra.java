@@ -63,7 +63,7 @@ public class Dijkstra {
 		根据题意，从节点 k发出的信号，到达节点  的时间就是节点 k 到节点 x 的最短路的长度。
 		因此我们需要求出节点 k 到其余所有点的最短路，其中的最大值就是答案。若存在从 k 出发无法到达的点，则返回 −1。
 
-		下面的代码将节点编号减小了 1，从而使节点编号位于 [0,n-1][0,n−1] 范围。
+		下面的代码将节点编号减小了 1，从而使节点编号位于 [0,n-1]范围。
 
 		作者：LeetCode-Solution
 		链接：https://leetcode-cn.com/problems/network-delay-time/solution/wang-luo-yan-chi-shi-jian-by-leetcode-so-6phc/
