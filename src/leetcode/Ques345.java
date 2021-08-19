@@ -8,7 +8,7 @@ public class Ques345 {
 	public static void main(String[] args) {
 		
 	}
-
+	//自己写的，双指针才是最优的
 	public String reverseVowels(String s) {
 		if(s==null || s.length() == 0 || s.length() == 1){
 			return s;
@@ -42,6 +42,8 @@ public class Ques345 {
 		return new String(chars);
 	}
 
+
+	//双指针
 	public String reverseVowels2(String s) {
 		if(s==null || s.length() == 0 || s.length() == 1){
 			return s;
